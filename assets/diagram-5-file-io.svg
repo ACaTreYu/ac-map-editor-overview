@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 690" role="img" aria-label="File I/O pipeline diagram">
+<style>
+  text{font-family:Consolas,Menlo,'DejaVu Sans Mono',monospace;fill:#E8ECF5}
+  .ttl{font-size:15px;font-weight:700;fill:#E8ECF5}
+  .stp{font-size:11px;font-weight:700;fill:#FFB347;letter-spacing:2px}
+  .n-title{font-size:14px;font-weight:700}
+  .n-sub{font-size:11px;fill:#98A2B8}
+  .lane-label{font-size:10px;fill:#8A94AD;letter-spacing:2px}
+  .edge{stroke:#FFB347;stroke-width:2;fill:none}
+  .edge.data{stroke:#5FE3D0;stroke-width:2;stroke-dasharray:5 4;fill:none}
+  .elabel{font-size:11px;fill:#98A2B8}
+  .elabel.data{fill:#5FE3D0}
+  .node{fill:#0E1322;stroke:#31406A;stroke-width:1}
+  .node.hot{stroke:#FFB347;stroke-width:1.5;filter:url(#glow5)}
+  .life{stroke:#26304F;stroke-width:1}
+  .note{fill:#1A2136;stroke:#31406A;stroke-width:1}
+  .note-t{font-size:11px;fill:#B8C0D4}
+  .chip{fill:url(#chk5);stroke:#31406A;stroke-width:1}
+  .marquee5{fill:none;stroke:#FFB347;stroke-width:1.5;stroke-dasharray:4 4}
+  @media (prefers-reduced-motion:no-preference){
+    .marquee5{animation:march5 1.2s linear infinite}
+    @keyframes march5{to{stroke-dashoffset:-16}}
+  }
+</style>
+<defs>
+  <pattern id="chk5" width="8" height="8" patternUnits="userSpaceOnUse">
+    <rect width="8" height="8" fill="#1A2136"/>
+    <rect width="4" height="4" fill="#2A3452"/>
+    <rect x="4" y="4" width="4" height="4" fill="#2A3452"/>
+  </pattern>
+  <filter id="glow5" x="-30%" y="-30%" width="160%" height="160%">
+    <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#FFB347" flood-opacity="0.28"/>
+  </filter>
+  <marker id="arr5" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M0 0 L8 4 L0 8 z" fill="#FFB347"/>
+  </marker>
+  <marker id="arrData5" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M0 0 L8 4 L0 8 z" fill="#5FE3D0"/>
+  </marker>
+</defs>
+
+<rect x="0" y="0" width="1080" height="690" fill="#121828"/>
+<rect x="0.5" y="0.5" width="1079" height="689" fill="none" stroke="#232D47"/>
+
+<text class="stp" x="20" y="28">[5/6]</text>
+<text class="ttl" x="84" y="28">FILE I/O PIPELINE — one interface, per-platform impl</text>
+
+<g transform="translate(0,48)">
+  <!-- lifelines -->
+  <line class="life" x1="150" y1="64" x2="150" y2="630"/>
+  <line class="life" x1="430" y1="64" x2="430" y2="630"/>
+  <line class="life" x1="690" y1="64" x2="690" y2="630"/>
+  <line class="life" x1="930" y1="64" x2="930" y2="630"/>
+
+  <!-- headers -->
+  <g>
+    <rect class="node" x="60" y="16" width="180" height="48"/>
+    <text class="n-title" x="150" y="45" text-anchor="middle">User</text>
+  </g>
+  <g>
+    <rect class="node" x="340" y="16" width="180" height="48"/>
+    <rect class="chip" x="496" y="24" width="14" height="14"/>
+    <text class="n-title" x="424" y="45" text-anchor="middle">App (core)</text>
+  </g>
+  <g>
+    <rect class="node" x="600" y="16" width="180" height="48"/>
+    <rect class="chip" x="756" y="24" width="14" height="14"/>
+    <text class="n-title" x="684" y="45" text-anchor="middle">MapParser (core)</text>
+  </g>
+  <g>
+    <rect class="node hot" x="830" y="16" width="200" height="48"/>
+    <rect class="marquee5" x="825" y="11" width="210" height="58"/>
+    <rect class="chip" x="1006" y="24" width="14" height="14"/>
+    <text class="n-title" x="922" y="45" text-anchor="middle">FileService (adapter)</text>
+  </g>
+
+  <!-- OPEN section -->
+  <text class="lane-label" x="40" y="96">OPEN MAP</text>
+
+  <path class="edge" d="M150 100 H430" marker-end="url(#arr5)"/>
+  <text class="elabel" x="290" y="92" text-anchor="middle">Open map</text>
+
+  <path class="edge" d="M430 134 H930" marker-end="url(#arr5)"/>
+  <text class="elabel" x="680" y="126" text-anchor="middle">openMapDialog()</text>
+
+  <path class="edge data" d="M930 164 H430" marker-end="url(#arrData5)"/>
+  <text class="elabel data" x="680" y="156" text-anchor="middle">file handle / path</text>
+
+  <path class="edge" d="M430 198 H930" marker-end="url(#arr5)"/>
+  <text class="elabel" x="680" y="190" text-anchor="middle">readFile()</text>
+
+  <path class="edge data" d="M930 228 H430" marker-end="url(#arrData5)"/>
+  <text class="elabel data" x="680" y="220" text-anchor="middle">raw bytes</text>
+
+  <path class="edge" d="M430 262 H690" marker-end="url(#arr5)"/>
+  <text class="elabel" x="560" y="254" text-anchor="middle">parse + validate header/version</text>
+
+  <path class="edge data" d="M690 292 H430" marker-end="url(#arrData5)"/>
+  <text class="elabel data" x="560" y="284" text-anchor="middle">header + compressed body</text>
+
+  <path class="edge" d="M430 326 H930" marker-end="url(#arr5)"/>
+  <text class="elabel" x="680" y="318" text-anchor="middle">decompress(body)</text>
+
+  <!-- note 1 -->
+  <rect class="note" x="40" y="344" width="1000" height="48"/>
+  <text class="note-t" x="56" y="366">Electron: Node zlib via IPC</text>
+  <text class="note-t" x="56" y="384">Web: pure-JS zlib (pako)</text>
+
+  <path class="edge data" d="M930 410 H430" marker-end="url(#arrData5)"/>
+  <text class="elabel data" x="680" y="402" text-anchor="middle">tile bytes</text>
+
+  <path class="edge" d="M430 438 H472 V452 H434" marker-end="url(#arr5)"/>
+  <text class="elabel" x="480" y="449" text-anchor="start">store.setMap() → UI re-renders</text>
+
+  <!-- SAVE section -->
+  <text class="lane-label" x="40" y="490">SAVE MAP</text>
+
+  <path class="edge" d="M150 498 H430" marker-end="url(#arr5)"/>
+  <text class="elabel" x="290" y="490" text-anchor="middle">Save map</text>
+
+  <path class="edge" d="M430 532 H690" marker-end="url(#arr5)"/>
+  <text class="elabel" x="560" y="524" text-anchor="middle">serialize header</text>
+
+  <path class="edge" d="M430 562 H930" marker-end="url(#arr5)"/>
+  <text class="elabel" x="680" y="554" text-anchor="middle">compress(tiles) → writeFile(header+body)</text>
+
+  <!-- note 2 -->
+  <rect class="note" x="40" y="582" width="1000" height="48"/>
+  <text class="note-t" x="56" y="604">Electron: fs write via IPC</text>
+  <text class="note-t" x="56" y="622">Web: File System Access API · download fallback</text>
+</g>
+</svg>

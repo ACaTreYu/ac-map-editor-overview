@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 484" role="img" aria-label="Rendering pipeline diagram">
+<style>
+  text{font-family:Consolas,Menlo,'DejaVu Sans Mono',monospace;fill:#E8ECF5}
+  .ttl{font-size:15px;font-weight:700;fill:#E8ECF5}
+  .stp{font-size:11px;font-weight:700;fill:#FFB347;letter-spacing:2px}
+  .n-title{font-size:14px;font-weight:700}
+  .n-sub{font-size:11px;fill:#98A2B8}
+  .lane-label{font-size:10px;fill:#8A94AD;letter-spacing:2px}
+  .edge{stroke:#FFB347;stroke-width:2;fill:none}
+  .edge.data{stroke:#5FE3D0;stroke-dasharray:5 4}
+  .edge.ctl{stroke:#FF5C8A;stroke-width:1.5;opacity:.85}
+  .elabel{font-size:11px;fill:#98A2B8}
+  .elabel.data{fill:#5FE3D0}
+  .elabel.ctl{fill:#FF5C8A}
+  .node{fill:#0E1322;stroke:#31406A;stroke-width:1}
+  .node.hot{stroke:#FFB347;stroke-width:1.5;filter:url(#glow3)}
+  .node.data{stroke:#5FE3D0}
+  .node.ctl{stroke:#FF5C8A}
+  .lane{fill:rgba(19,24,40,.6);stroke:#232D47;stroke-width:1;stroke-dasharray:2 4}
+  .chip{fill:url(#chk3);stroke:#31406A;stroke-width:1}
+  .marquee3{fill:none;stroke:#FFB347;stroke-width:1.5;stroke-dasharray:4 4}
+  @media (prefers-reduced-motion:no-preference){
+    .marquee3{animation:march3 1.2s linear infinite}
+    @keyframes march3{to{stroke-dashoffset:-16}}
+  }
+</style>
+<defs>
+  <pattern id="chk3" width="8" height="8" patternUnits="userSpaceOnUse">
+    <rect width="8" height="8" fill="#1A2136"/>
+    <rect width="4" height="4" fill="#2A3452"/>
+    <rect x="4" y="4" width="4" height="4" fill="#2A3452"/>
+  </pattern>
+  <filter id="glow3" x="-30%" y="-30%" width="160%" height="160%">
+    <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#FFB347" flood-opacity="0.28"/>
+  </filter>
+  <marker id="arr3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M0 0 L8 4 L0 8 z" fill="#FFB347"/>
+  </marker>
+  <marker id="arrData3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M0 0 L8 4 L0 8 z" fill="#5FE3D0"/>
+  </marker>
+  <marker id="arrCtl3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M0 0 L8 4 L0 8 z" fill="#FF5C8A"/>
+  </marker>
+</defs>
+
+<rect x="0" y="0" width="1080" height="484" fill="#121828"/>
+<rect x="0.5" y="0.5" width="1079" height="483" fill="none" stroke="#232D47"/>
+
+<text class="stp" x="20" y="28">[3/6]</text>
+<text class="ttl" x="84" y="28">RENDERING PIPELINE — build once, then patch</text>
+
+<g transform="translate(0,48)">
+  <rect class="lane" x="24" y="14" width="1032" height="96"/>
+  <text class="lane-label" x="40" y="36">INPUTS</text>
+
+  <g>
+    <rect class="node" x="80" y="50" width="200" height="52"/>
+    <rect class="chip" x="256" y="58" width="14" height="14"/>
+    <text class="n-title" x="94" y="80">Tile array</text>
+  </g>
+  <g>
+    <rect class="node" x="320" y="50" width="250" height="52"/>
+    <rect class="chip" x="546" y="58" width="14" height="14"/>
+    <text class="n-title" x="334" y="80">Tileset atlas image</text>
+  </g>
+  <g>
+    <rect class="node" x="610" y="50" width="270" height="52"/>
+    <rect class="chip" x="856" y="58" width="14" height="14"/>
+    <text class="n-title" x="624" y="80">Animation frame counter</text>
+  </g>
+
+  <!-- off-screen buffer (hot) -->
+  <g>
+    <rect class="node hot" x="350" y="168" width="380" height="64"/>
+    <rect class="marquee3" x="345" y="163" width="390" height="74"/>
+    <rect class="chip" x="706" y="176" width="14" height="14"/>
+    <text class="n-title" x="364" y="194">Off-screen buffer</text>
+    <text class="n-sub" x="364" y="214">4096 × 4096 · built once per map</text>
+  </g>
+
+  <!-- interaction inputs -->
+  <g>
+    <rect class="node ctl" x="40" y="176" width="180" height="52"/>
+    <text class="n-title" x="54" y="206">Tile edit</text>
+  </g>
+  <g>
+    <rect class="node ctl" x="860" y="176" width="180" height="52"/>
+    <text class="n-title" x="874" y="206">Pan / zoom</text>
+  </g>
+
+  <!-- canvas stack -->
+  <rect class="lane" x="24" y="300" width="1032" height="124"/>
+  <text class="lane-label" x="40" y="322">ON-SCREEN CANVAS STACK</text>
+
+  <g>
+    <rect class="node" x="56" y="336" width="236" height="76"/>
+    <text class="n-title" x="70" y="362">Map layer</text>
+    <text class="n-sub" x="70" y="382">single drawImage blit</text>
+    <text class="n-sub" x="70" y="401">of visible buffer region</text>
+  </g>
+  <g>
+    <rect class="node" x="316" y="336" width="210" height="76"/>
+    <text class="n-title" x="330" y="362">Grid layer</text>
+    <text class="n-sub" x="330" y="382">cached CanvasPattern</text>
+  </g>
+  <g>
+    <rect class="node" x="550" y="336" width="250" height="76"/>
+    <text class="n-title" x="564" y="362">UI layer</text>
+    <text class="n-sub" x="564" y="382">cursor · selection · previews</text>
+    <text class="n-sub" x="564" y="401">RAF-debounced</text>
+  </g>
+  <g>
+    <rect class="node" x="824" y="336" width="210" height="76"/>
+    <text class="n-title" x="838" y="362">Text layer</text>
+    <text class="n-sub" x="838" y="382">DPI-scaled labels</text>
+  </g>
+
+  <!-- edges into buffer -->
+  <path class="edge" d="M180 102 V140 H430 V168" marker-end="url(#arr3)"/>
+  <path class="edge" d="M445 102 V150 H520 V168" marker-end="url(#arr3)"/>
+  <path class="edge data" d="M745 102 V130 H650 V168" marker-end="url(#arrData3)"/>
+  <text class="elabel data" x="697" y="124" text-anchor="middle">dirty-rect patch · visible tiles only</text>
+
+  <path class="edge data" d="M220 202 H350" marker-end="url(#arrData3)"/>
+  <text class="elabel data" x="285" y="194" text-anchor="middle">patch changed tiles</text>
+
+  <!-- buffer to screen -->
+  <path class="edge" d="M430 232 V270 H174 V336" marker-end="url(#arr3)"/>
+
+  <path class="edge ctl" d="M950 228 V285 H240 V336" marker-end="url(#arrCtl3)"/>
+  <text class="elabel ctl" x="560" y="278" text-anchor="middle">no repaint · re-blit</text>
+</g>
+</svg>

@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 430" role="img" aria-label="Desktop and web split diagram">
+<style>
+  text{font-family:Consolas,Menlo,'DejaVu Sans Mono',monospace;fill:#E8ECF5}
+  .ttl{font-size:15px;font-weight:700;fill:#E8ECF5}
+  .stp{font-size:11px;font-weight:700;fill:#FFB347;letter-spacing:2px}
+  .n-title{font-size:14px;font-weight:700}
+  .n-sub{font-size:11px;fill:#98A2B8}
+  .lane-label{font-size:10px;fill:#8A94AD;letter-spacing:2px}
+  .edge{stroke:#FFB347;stroke-width:2;fill:none}
+  .node{fill:#0E1322;stroke:#31406A;stroke-width:1}
+  .node.hot{stroke:#FFB347;stroke-width:1.5;filter:url(#glow6)}
+  .lane{fill:rgba(19,24,40,.6);stroke:#232D47;stroke-width:1;stroke-dasharray:2 4}
+  .chip{fill:url(#chk6);stroke:#31406A;stroke-width:1}
+  .marquee6{fill:none;stroke:#FFB347;stroke-width:1.5;stroke-dasharray:4 4}
+  @media (prefers-reduced-motion:no-preference){
+    .marquee6{animation:march6 1.2s linear infinite}
+    @keyframes march6{to{stroke-dashoffset:-16}}
+  }
+</style>
+<defs>
+  <pattern id="chk6" width="8" height="8" patternUnits="userSpaceOnUse">
+    <rect width="8" height="8" fill="#1A2136"/>
+    <rect width="4" height="4" fill="#2A3452"/>
+    <rect x="4" y="4" width="4" height="4" fill="#2A3452"/>
+  </pattern>
+  <filter id="glow6" x="-30%" y="-30%" width="160%" height="160%">
+    <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#FFB347" flood-opacity="0.28"/>
+  </filter>
+  <marker id="arr6" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M0 0 L8 4 L0 8 z" fill="#FFB347"/>
+  </marker>
+</defs>
+
+<rect x="0" y="0" width="1080" height="430" fill="#121828"/>
+<rect x="0.5" y="0.5" width="1079" height="429" fill="none" stroke="#232D47"/>
+
+<text class="stp" x="20" y="28">[6/6]</text>
+<text class="ttl" x="84" y="28">DESKTOP VS WEB — one codebase, two entries</text>
+
+<g transform="translate(0,48)">
+  <!-- desktop entry -->
+  <rect class="lane" x="24" y="14" width="590" height="170"/>
+  <text class="lane-label" x="40" y="36">DESKTOP ENTRY</text>
+  <g>
+    <rect class="node" x="48" y="50" width="170" height="50"/>
+    <rect class="chip" x="194" y="58" width="14" height="14"/>
+    <text class="n-title" x="62" y="80">main.tsx</text>
+  </g>
+  <g>
+    <rect class="node" x="250" y="50" width="210" height="50"/>
+    <rect class="chip" x="436" y="58" width="14" height="14"/>
+    <text class="n-title" x="264" y="80">ElectronFileService</text>
+  </g>
+  <g>
+    <rect class="node" x="48" y="112" width="320" height="66"/>
+    <rect class="chip" x="344" y="120" width="14" height="14"/>
+    <text class="n-title" x="62" y="136">Electron main process</text>
+    <text class="n-sub" x="62" y="155">window mgmt · IPC handlers</text>
+    <text class="n-sub" x="62" y="173">native menus · auto-update</text>
+  </g>
+
+  <!-- web entry -->
+  <rect class="lane" x="24" y="200" width="590" height="170"/>
+  <text class="lane-label" x="40" y="222">WEB ENTRY</text>
+  <g>
+    <rect class="node" x="48" y="236" width="180" height="50"/>
+    <rect class="chip" x="204" y="244" width="14" height="14"/>
+    <text class="n-title" x="62" y="266">web-main.tsx</text>
+  </g>
+  <g>
+    <rect class="node" x="260" y="236" width="200" height="50"/>
+    <rect class="chip" x="436" y="244" width="14" height="14"/>
+    <text class="n-title" x="274" y="266">WebFileService</text>
+  </g>
+  <g>
+    <rect class="node" x="48" y="298" width="320" height="66"/>
+    <rect class="chip" x="344" y="306" width="14" height="14"/>
+    <text class="n-title" x="62" y="322">WebElectronShim</text>
+    <text class="n-sub" x="62" y="341">browser stand-ins for</text>
+    <text class="n-sub" x="62" y="360">desktop-only calls</text>
+  </g>
+
+  <!-- shared -->
+  <rect class="lane" x="644" y="100" width="400" height="190"/>
+  <text class="lane-label" x="660" y="122">SHARED — ONE CODEBASE</text>
+  <g>
+    <rect class="node hot" x="684" y="140" width="320" height="60"/>
+    <rect class="marquee6" x="679" y="135" width="330" height="70"/>
+    <rect class="chip" x="980" y="148" width="14" height="14"/>
+    <text class="n-title" x="698" y="166">src/core</text>
+    <text class="n-sub" x="698" y="186">all logic</text>
+  </g>
+  <g>
+    <rect class="node" x="684" y="224" width="320" height="56"/>
+    <rect class="chip" x="980" y="232" width="14" height="14"/>
+    <text class="n-title" x="698" y="250">src/components</text>
+    <text class="n-sub" x="698" y="269">all UI</text>
+  </g>
+
+  <!-- edges -->
+  <path class="edge" d="M218 75 H250" marker-end="url(#arr6)"/>
+  <path class="edge" d="M460 75 H630 V170 H684" marker-end="url(#arr6)"/>
+  <path class="edge" d="M133 100 V112" marker-end="url(#arr6)"/>
+
+  <path class="edge" d="M228 261 H260" marker-end="url(#arr6)"/>
+  <path class="edge" d="M460 261 H610 V180 H684" marker-end="url(#arr6)"/>
+  <path class="edge" d="M133 286 V298" marker-end="url(#arr6)"/>
+</g>
+</svg>

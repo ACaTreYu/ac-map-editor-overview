@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 656" role="img" aria-label="Layer overview diagram">
+<style>
+  text{font-family:Consolas,Menlo,'DejaVu Sans Mono',monospace;fill:#E8ECF5}
+  .ttl{font-size:15px;font-weight:700;fill:#E8ECF5}
+  .stp{font-size:11px;font-weight:700;fill:#FFB347;letter-spacing:2px}
+  .n-title{font-size:14px;font-weight:700}
+  .n-sub{font-size:11px;fill:#98A2B8}
+  .lane-label{font-size:10px;fill:#8A94AD;letter-spacing:2px}
+  .edge{stroke:#FFB347;stroke-width:2;fill:none}
+  .edge.data{stroke:#5FE3D0;stroke-dasharray:5 4}
+  .edge.ctl{stroke:#FF5C8A;stroke-width:1.5;opacity:.85}
+  .elabel{font-size:11px;fill:#98A2B8}
+  .elabel.data{fill:#5FE3D0}
+  .elabel.ctl{fill:#FF5C8A}
+  .node{fill:#0E1322;stroke:#31406A;stroke-width:1}
+  .node.hot{stroke:#FFB347;stroke-width:1.5;filter:url(#glow1)}
+  .node.data{stroke:#5FE3D0}
+  .node.dim{stroke:#26304F}
+  .lane{fill:rgba(19,24,40,.6);stroke:#232D47;stroke-width:1;stroke-dasharray:2 4}
+  .chip{fill:url(#chk1);stroke:#31406A;stroke-width:1}
+  .marquee1{fill:none;stroke:#FFB347;stroke-width:1.5;stroke-dasharray:4 4}
+  @media (prefers-reduced-motion:no-preference){
+    .marquee1{animation:march1 1.2s linear infinite}
+    @keyframes march1{to{stroke-dashoffset:-16}}
+  }
+</style>
+<defs>
+  <pattern id="chk1" width="8" height="8" patternUnits="userSpaceOnUse">
+    <rect width="8" height="8" fill="#1A2136"/>
+    <rect width="4" height="4" fill="#2A3452"/>
+    <rect x="4" y="4" width="4" height="4" fill="#2A3452"/>
+  </pattern>
+  <filter id="glow1" x="-30%" y="-30%" width="160%" height="160%">
+    <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#FFB347" flood-opacity="0.28"/>
+  </filter>
+  <marker id="arr1" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M0 0 L8 4 L0 8 z" fill="#FFB347"/>
+  </marker>
+</defs>
+
+<rect x="0" y="0" width="1080" height="656" fill="#121828"/>
+<rect x="0.5" y="0.5" width="1079" height="655" fill="none" stroke="#232D47"/>
+
+<text class="stp" x="20" y="28">[1/6]</text>
+<text class="ttl" x="84" y="28">LAYER OVERVIEW — one core, three targets</text>
+
+<g transform="translate(0,48)">
+  <rect class="lane" x="24" y="14" width="1032" height="124"/>
+  <text class="lane-label" x="40" y="36">REACT UI LAYER</text>
+  <rect class="lane" x="24" y="168" width="1032" height="196"/>
+  <text class="lane-label" x="40" y="190">PORTABLE CORE — ZERO PLATFORM IMPORTS</text>
+  <rect class="lane" x="24" y="384" width="1032" height="96"/>
+  <text class="lane-label" x="40" y="406">PLATFORM ADAPTERS</text>
+  <rect class="lane" x="24" y="500" width="1032" height="92"/>
+  <text class="lane-label" x="40" y="522">PLATFORMS</text>
+
+  <!-- UI nodes -->
+  <g>
+    <rect class="node" x="48" y="52" width="180" height="60"/>
+    <rect class="chip" x="204" y="60" width="14" height="14"/>
+    <text class="n-title" x="62" y="87">App shell / layout</text>
+  </g>
+  <g>
+    <rect class="node" x="252" y="52" width="170" height="60"/>
+    <rect class="chip" x="398" y="60" width="14" height="14"/>
+    <text class="n-title" x="266" y="80">ToolBar</text>
+    <text class="n-sub" x="266" y="100">22 tools</text>
+  </g>
+  <g>
+    <rect class="node" x="452" y="52" width="160" height="60"/>
+    <rect class="chip" x="588" y="60" width="14" height="14"/>
+    <text class="n-title" x="466" y="87">MapCanvas</text>
+  </g>
+  <g>
+    <rect class="node" x="642" y="52" width="290" height="80"/>
+    <rect class="chip" x="908" y="60" width="14" height="14"/>
+    <text class="n-title" x="656" y="76">Panels</text>
+    <text class="n-sub" x="656" y="96">TilePalette · Minimap · MapSettings</text>
+    <text class="n-sub" x="656" y="114">Animation · TilesetEditor · SpriteEditor</text>
+  </g>
+
+  <!-- CORE nodes -->
+  <g>
+    <rect class="node" x="48" y="204" width="246" height="60"/>
+    <rect class="chip" x="270" y="212" width="14" height="14"/>
+    <text class="n-title" x="62" y="232">Zustand store</text>
+    <text class="n-sub" x="62" y="252">documents · global · window slices</text>
+  </g>
+  <g>
+    <rect class="node" x="318" y="204" width="214" height="60"/>
+    <rect class="chip" x="508" y="212" width="14" height="14"/>
+    <text class="n-title" x="332" y="232">CanvasEngine</text>
+    <text class="n-sub" x="332" y="252">off-screen buffer renderer</text>
+  </g>
+  <g>
+    <rect class="node hot" x="556" y="204" width="252" height="88"/>
+    <rect class="marquee1" x="551" y="199" width="262" height="98"/>
+    <rect class="chip" x="784" y="212" width="14" height="14"/>
+    <text class="n-title" x="570" y="230">Map domain</text>
+    <text class="n-sub" x="570" y="250">parser · tile encoding</text>
+    <text class="n-sub" x="570" y="269">wall system · game objects</text>
+    <text class="n-sub" x="570" y="288">content-aware transforms</text>
+  </g>
+  <g>
+    <rect class="node" x="830" y="204" width="200" height="60"/>
+    <rect class="chip" x="1006" y="212" width="14" height="14"/>
+    <text class="n-title" x="844" y="232">PointerManager</text>
+    <text class="n-sub" x="844" y="252">gesture state machine</text>
+  </g>
+  <g>
+    <rect class="node data" x="430" y="308" width="260" height="48"/>
+    <rect class="chip" x="666" y="316" width="14" height="14"/>
+    <text class="n-title" x="560" y="337" text-anchor="middle">FileService interface</text>
+  </g>
+
+  <!-- ADAPTER nodes -->
+  <g>
+    <rect class="node" x="300" y="418" width="280" height="56"/>
+    <rect class="chip" x="556" y="426" width="14" height="14"/>
+    <text class="n-title" x="314" y="444">Electron adapter</text>
+    <text class="n-sub" x="314" y="463">IPC · native dialogs · zlib</text>
+  </g>
+  <g>
+    <rect class="node" x="640" y="418" width="336" height="56"/>
+    <rect class="chip" x="952" y="426" width="14" height="14"/>
+    <text class="n-title" x="654" y="444">Web adapter</text>
+    <text class="n-sub" x="654" y="463">File System Access API · pure-JS zlib</text>
+  </g>
+
+  <!-- PLATFORM nodes -->
+  <g>
+    <rect class="node" x="300" y="536" width="190" height="48"/>
+    <text class="n-title" x="395" y="565" text-anchor="middle">Windows desktop</text>
+  </g>
+  <g>
+    <rect class="node" x="520" y="536" width="180" height="48"/>
+    <text class="n-title" x="610" y="565" text-anchor="middle">Linux desktop</text>
+  </g>
+  <g>
+    <rect class="node" x="760" y="536" width="180" height="48"/>
+    <text class="n-title" x="850" y="565" text-anchor="middle">Browser</text>
+  </g>
+
+  <!-- edges: UI -> CORE -->
+  <path class="edge" d="M138 112 V190 H171 V204" marker-end="url(#arr1)"/>
+  <path class="edge" d="M500 112 V186 H425 V204" marker-end="url(#arr1)"/>
+  <path class="edge" d="M560 112 V172 H930 V204" marker-end="url(#arr1)"/>
+  <path class="edge" d="M120 112 V150 H34 V300 H560 V308" marker-end="url(#arr1)"/>
+  <!-- STORE -> MAP -->
+  <path class="edge" d="M294 234 H525 V248 H556" marker-end="url(#arr1)"/>
+
+  <!-- FS -> ADAPTERS -->
+  <path class="edge" d="M540 356 V386 H440 V418" marker-end="url(#arr1)"/>
+  <path class="edge" d="M580 356 V400 H808 V418" marker-end="url(#arr1)"/>
+
+  <!-- ADAPTERS -> PLATFORMS -->
+  <path class="edge" d="M420 474 V510 H395 V536" marker-end="url(#arr1)"/>
+  <path class="edge" d="M460 474 V510 H610 V536" marker-end="url(#arr1)"/>
+  <path class="edge" d="M808 474 V510 H850 V536" marker-end="url(#arr1)"/>
+</g>
+</svg>

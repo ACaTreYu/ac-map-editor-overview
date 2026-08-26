@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 430" role="img" aria-label="Input gesture state machine diagram">
+<style>
+  text{font-family:Consolas,Menlo,'DejaVu Sans Mono',monospace;fill:#E8ECF5}
+  .ttl{font-size:15px;font-weight:700;fill:#E8ECF5}
+  .stp{font-size:11px;font-weight:700;fill:#FFB347;letter-spacing:2px}
+  .n-title{font-size:14px;font-weight:700}
+  .n-sub{font-size:11px;fill:#98A2B8}
+  .edge{stroke:#FFB347;stroke-width:2;fill:none}
+  .edge.ctl{stroke:#FF5C8A;stroke-width:1.5;opacity:.85;fill:none}
+  .elabel{font-size:11px;fill:#98A2B8}
+  .elabel.ctl{fill:#FF5C8A}
+  .node{fill:#0E1322;stroke:#31406A;stroke-width:1}
+  .node.hot{stroke:#FFB347;stroke-width:1.5;filter:url(#glow4)}
+  .node.ctl{stroke:#FF5C8A}
+  .marquee4{fill:none;stroke:#FFB347;stroke-width:1.5;stroke-dasharray:4 4}
+  @media (prefers-reduced-motion:no-preference){
+    .marquee4{animation:march4 1.2s linear infinite}
+    @keyframes march4{to{stroke-dashoffset:-16}}
+  }
+</style>
+<defs>
+  <filter id="glow4" x="-30%" y="-30%" width="160%" height="160%">
+    <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#FFB347" flood-opacity="0.28"/>
+  </filter>
+  <marker id="arrCtl4" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M0 0 L8 4 L0 8 z" fill="#FF5C8A"/>
+  </marker>
+</defs>
+
+<rect x="0" y="0" width="1080" height="430" fill="#121828"/>
+<rect x="0.5" y="0.5" width="1079" height="429" fill="none" stroke="#232D47"/>
+
+<text class="stp" x="20" y="28">[4/6]</text>
+<text class="ttl" x="84" y="28">INPUT PIPELINE — one gesture state machine</text>
+
+<g transform="translate(0,48)">
+  <circle cx="44" cy="204" r="8" fill="#FF5C8A"/>
+
+  <g>
+    <rect class="node ctl" x="80" y="176" width="150" height="56"/>
+    <text class="n-title" x="155" y="209" text-anchor="middle">IDLE</text>
+  </g>
+
+  <g>
+    <rect class="node hot" x="300" y="172" width="210" height="64"/>
+    <rect class="marquee4" x="295" y="167" width="220" height="74"/>
+    <text class="n-title" x="314" y="198">SINGLE_DOWN</text>
+    <text class="n-sub" x="314" y="218">grace: tool vs gesture</text>
+  </g>
+
+  <g>
+    <rect class="node ctl" x="610" y="64" width="220" height="60"/>
+    <text class="n-title" x="624" y="90">TOOL_ACTIVE</text>
+    <text class="n-sub" x="624" y="110">committed to a tool</text>
+  </g>
+  <g>
+    <rect class="node ctl" x="610" y="176" width="220" height="60"/>
+    <text class="n-title" x="624" y="202">NAVIGATING</text>
+    <text class="n-sub" x="624" y="222">2+ pointers · pan/zoom</text>
+  </g>
+  <g>
+    <rect class="node ctl" x="610" y="288" width="220" height="60"/>
+    <text class="n-title" x="624" y="314">LONG_PRESS</text>
+    <text class="n-sub" x="624" y="334">500 ms hold</text>
+  </g>
+
+  <g>
+    <rect class="node ctl" x="900" y="176" width="150" height="60"/>
+    <text class="n-title" x="975" y="200" text-anchor="middle">IDLE</text>
+    <text class="n-sub" x="975" y="220" text-anchor="middle">(rest)</text>
+  </g>
+
+  <!-- transitions -->
+  <path class="edge ctl" d="M52 204 H80" marker-end="url(#arrCtl4)"/>
+
+  <path class="edge ctl" d="M230 204 H300" marker-end="url(#arrCtl4)"/>
+  <text class="elabel ctl" x="265" y="196" text-anchor="middle">pointer down</text>
+
+  <path class="edge ctl" d="M510 188 H560 V94 H610" marker-end="url(#arrCtl4)"/>
+  <text class="elabel ctl" x="566" y="150" text-anchor="start">grace ends · moved</text>
+
+  <path class="edge ctl" d="M510 204 H610" marker-end="url(#arrCtl4)"/>
+  <text class="elabel ctl" x="560" y="166" text-anchor="middle">2nd pointer in grace</text>
+
+  <path class="edge ctl" d="M405 236 V318 H610" marker-end="url(#arrCtl4)"/>
+  <text class="elabel ctl" x="411" y="290" text-anchor="start">500 ms hold</text>
+
+  <path class="edge ctl" d="M720 124 V176" marker-end="url(#arrCtl4)"/>
+  <text class="elabel ctl" x="726" y="152" text-anchor="start">2nd pointer · tool cancelled</text>
+
+  <path class="edge ctl" d="M830 94 H930 V176" marker-end="url(#arrCtl4)"/>
+  <text class="elabel ctl" x="836" y="86" text-anchor="start">pointer up · commit</text>
+
+  <path class="edge ctl" d="M830 206 H900" marker-end="url(#arrCtl4)"/>
+  <text class="elabel ctl" x="865" y="170" text-anchor="middle">all pointers up</text>
+
+  <path class="edge ctl" d="M830 318 H930 V236" marker-end="url(#arrCtl4)"/>
+  <text class="elabel ctl" x="836" y="310" text-anchor="start">release</text>
+</g>
+</svg>
